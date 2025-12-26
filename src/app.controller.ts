@@ -6,12 +6,13 @@ import { Public } from './auth/decorators/public.decorator';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Public() // Hacer pública esta ruta
+  @Public()
   @Get()
   getWelcome() {
     return {
       message: '🎬 Bienvenido a Mini-Netflix API',
       version: '1.0.0',
+      timestamp: new Date().toISOString(),
       endpoints: {
         auth: {
           register: 'POST /auth/register',
@@ -41,8 +42,10 @@ export class AppController {
   getHealth() {
     return {
       status: 'OK',
+      message: 'API funcionando correctamente',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
+      environment: process.env.NODE_ENV || 'development',
     };
   }
 }

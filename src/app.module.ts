@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { SeriesModule } from './series/series.module';
 import { EpisodiosModule } from './episodios/episodios.module';
@@ -34,7 +36,9 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     SeriesModule,
     EpisodiosModule,
   ],
+  controllers: [AppController],  // ⭐ IMPORTANTE: Debe estar aquí
   providers: [
+    AppService,  // ⭐ IMPORTANTE: Debe estar aquí
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
