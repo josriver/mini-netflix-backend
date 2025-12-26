@@ -1,98 +1,373 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🎬 Mini-Netflix Backend API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API RESTful escalable para una plataforma de streaming, construida con NestJS, PostgreSQL, TypeORM y Docker.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+[![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-## Description
+## 📋 Tabla de Contenidos
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Características](#-características)
+- [Requisitos Previos](#-requisitos-previos)
+- [Instalación Local](#️-instalación-local)
+- [Instalación con Docker](#-instalación-con-docker)
+- [Endpoints de la API](#-endpoints-de-la-api)
+- [Estructura del Proyecto](#️-estructura-del-proyecto)
+- [Variables de Entorno](#-variables-de-entorno)
+- [Pruebas](#-pruebas)
+- [Despliegue](#-despliegue)
+- [Tecnologías](#-tecnologías)
 
-## Project setup
+## ✨ Características
 
-```bash
-$ npm install
-```
+- ✅ **CRUD Completo** para Series y Episodios
+- ✅ **Autenticación JWT** con tokens stateless
+- ✅ **Validación de Datos** con DTOs y class-validator
+- ✅ **Relaciones One-to-Many** entre Series y Episodios
+- ✅ **Seguridad por Roles** con Guards
+- ✅ **Rutas Públicas** (GET) y **Privadas** (POST, PATCH, DELETE)
+- ✅ **Base de Datos PostgreSQL** con TypeORM
+- ✅ **Dockerizado** para fácil despliegue
+- ✅ **Documentación Completa**
 
-## Compile and run the project
+## 📋 Requisitos Previos
 
-```bash
-# development
-$ npm run start
+### Para instalación local:
+- Node.js v18 o superior
+- PostgreSQL v14 o superior
+- npm v9 o superior
 
-# watch mode
-$ npm run start:dev
+### Para instalación con Docker:
+- Docker v20 o superior
+- Docker Compose v2 o superior
 
-# production mode
-$ npm run start:prod
-```
+## 🛠️ Instalación Local
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 1. Clonar el repositorio
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+git clone https://github.com/josriver/mini-netflix-backend.git
+cd mini-netflix-backend
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 2. Instalar dependencias
 
-## Resources
+```bash
+npm install
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 3. Configurar variables de entorno
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+cp .env.example .env
+```
 
-## Support
+Edita el archivo `.env` con tus credenciales:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=tu_password
+DB_DATABASE=mini_netflix
+JWT_SECRET=tu_secreto_super_seguro
+JWT_EXPIRATION=24h
+PORT=3000
+```
 
-## Stay in touch
+### 4. Crear la base de datos
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+# Conectar a PostgreSQL
+psql -U postgres
 
-## License
+# Crear base de datos
+CREATE DATABASE mini_netflix;
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Salir
+\q
+```
+
+### 5. Iniciar el servidor
+
+```bash
+# Modo desarrollo (con hot-reload)
+npm run start:dev
+
+# Modo producción
+npm run build
+npm run start:prod
+```
+
+La API estará disponible en: **http://localhost:3000**
+
+## 🐳 Instalación con Docker
+
+### Opción más rápida y recomendada
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/josriver/mini-netflix-backend.git
+cd mini-netflix-backend
+
+# 2. Levantar servicios (API + PostgreSQL)
+docker-compose up --build
+
+# La API estará disponible en: http://localhost:3000
+```
+
+### Comandos útiles de Docker
+
+```bash
+# Levantar en segundo plano
+docker-compose up -d --build
+
+# Ver logs
+docker-compose logs -f
+
+# Detener servicios
+docker-compose down
+
+# Detener y eliminar todo (incluye datos de BD)
+docker-compose down -v
+
+# Reconstruir sin caché
+docker-compose build --no-cache
+docker-compose up -d
+```
+
+## 📚 Endpoints de la API
+
+### 🔓 Autenticación (Rutas Públicas)
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST | `/auth/register` | Registrar nuevo usuario administrador |
+| POST | `/auth/login` | Iniciar sesión y obtener token JWT |
+
+### 📺 Series
+
+| Método | Endpoint | Auth | Descripción |
+|--------|----------|------|-------------|
+| GET | `/series` | ❌ | Obtener todas las series con sus episodios |
+| GET | `/series/:id` | ❌ | Obtener una serie específica con sus episodios |
+| POST | `/series` | ✅ | Crear una nueva serie |
+| PATCH | `/series/:id` | ✅ | Actualizar una serie |
+| DELETE | `/series/:id` | ✅ | Eliminar una serie |
+
+### 🎬 Episodios
+
+| Método | Endpoint | Auth | Descripción |
+|--------|----------|------|-------------|
+| GET | `/episodios` | ❌ | Obtener todos los episodios |
+| GET | `/episodios/:id` | ❌ | Obtener un episodio específico |
+| GET | `/episodios/serie/:serieId` | ❌ | Obtener episodios de una serie |
+| POST | `/episodios` | ✅ | Crear un nuevo episodio |
+| PATCH | `/episodios/:id` | ✅ | Actualizar un episodio |
+| DELETE | `/episodios/:id` | ✅ | Eliminar un episodio |
+
+## 🔐 Autenticación
+
+Las rutas protegidas requieren un token JWT en el header:
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+### Ejemplo de registro:
+
+```bash
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "admin",
+    "password": "admin123"
+  }'
+```
+
+**Respuesta:**
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "user": {
+    "id": "uuid-here",
+    "username": "admin"
+  }
+}
+```
+
+### Ejemplo de creación de serie (con token):
+
+```bash
+curl -X POST http://localhost:3000/series \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN_AQUI" \
+  -d '{
+    "titulo": "Stranger Things",
+    "genero": "Ciencia Ficción",
+    "sinopsis": "Un grupo de niños descubre experimentos secretos.",
+    "urlPortada": "https://example.com/stranger-things.jpg"
+  }'
+```
+
+## 🏗️ Estructura del Proyecto
+
+```
+mini-netflix-backend/
+├── src/
+│   ├── auth/                      # Módulo de autenticación
+│   │   ├── decorators/            # Decoradores personalizados
+│   │   │   └── public.decorator.ts
+│   │   ├── dto/                   # DTOs de autenticación
+│   │   │   ├── login.dto.ts
+│   │   │   └── register.dto.ts
+│   │   ├── guards/                # Guards de seguridad
+│   │   │   └── jwt-auth.guard.ts
+│   │   ├── strategies/            # Estrategias de Passport
+│   │   │   └── jwt.strategy.ts
+│   │   ├── auth.controller.ts
+│   │   ├── auth.module.ts
+│   │   ├── auth.service.ts
+│   │   └── user.entity.ts
+│   ├── series/                    # Módulo de series
+│   │   ├── dto/
+│   │   │   ├── create-serie.dto.ts
+│   │   │   └── update-serie.dto.ts
+│   │   ├── serie.entity.ts
+│   │   ├── series.controller.ts
+│   │   ├── series.module.ts
+│   │   └── series.service.ts
+│   ├── episodios/                 # Módulo de episodios
+│   │   ├── dto/
+│   │   │   ├── create-episodio.dto.ts
+│   │   │   └── update-episodio.dto.ts
+│   │   ├── episodio.entity.ts
+│   │   ├── episodios.controller.ts
+│   │   ├── episodios.module.ts
+│   │   └── episodios.service.ts
+│   ├── app.controller.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   └── main.ts
+├── .dockerignore
+├── .env.example
+├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
+├── nest-cli.json
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
+## 🔧 Variables de Entorno
+
+| Variable | Descripción | Ejemplo |
+|----------|-------------|---------|
+| `DB_HOST` | Host de PostgreSQL | `localhost` o `postgres` (Docker) |
+| `DB_PORT` | Puerto de PostgreSQL | `5432` |
+| `DB_USERNAME` | Usuario de PostgreSQL | `postgres` |
+| `DB_PASSWORD` | Contraseña de PostgreSQL | `tu_password` |
+| `DB_DATABASE` | Nombre de la base de datos | `mini_netflix` |
+| `JWT_SECRET` | Secreto para firmar tokens JWT | `tu_secreto_123` |
+| `JWT_EXPIRATION` | Tiempo de expiración del token | `24h` |
+| `PORT` | Puerto de la aplicación | `3000` |
+
+## 🧪 Pruebas
+
+### Verificar que la API funciona
+
+```bash
+# 1. Salud del servidor
+curl http://localhost:3000
+
+# 2. Ver todas las series (público)
+curl http://localhost:3000/series
+
+# 3. Intentar crear serie sin token (debe fallar con 401)
+curl -X POST http://localhost:3000/series \
+  -H "Content-Type: application/json" \
+  -d '{"titulo":"Test","genero":"Test","sinopsis":"Test","urlPortada":"https://test.com"}'
+```
+
+## 🚀 Despliegue
+
+### Render (Recomendado)
+
+1. Sube tu código a GitHub
+2. Crea una cuenta en [Render](https://render.com)
+3. Conecta tu repositorio
+4. Render detectará el `render.yaml` automáticamente
+5. Configura las variables de entorno
+6. Despliega
+
+### Railway
+
+```bash
+# Instalar Railway CLI
+npm i -g @railway/cli
+
+# Login
+railway login
+
+# Inicializar proyecto
+railway init
+
+# Desplegar
+railway up
+```
+
+## 🛡️ Seguridad
+
+- ✅ Contraseñas hasheadas con **bcrypt** (10 rounds)
+- ✅ Tokens **JWT stateless** con expiración
+- ✅ **Guards** para proteger rutas
+- ✅ **ValidationPipe** con whitelist activado
+- ✅ **CORS** configurado
+- ✅ Contenedores Docker con **usuarios no-root**
+
+## 🧩 Validaciones
+
+El proyecto usa `class-validator` con las siguientes configuraciones:
+
+- **whitelist: true** - Elimina propiedades no definidas en DTOs
+- **forbidNonWhitelisted: true** - Rechaza requests con datos extra
+- **transform: true** - Transforma tipos automáticamente
+
+## 🔗 Relaciones de Base de Datos
+
+```
+Serie (1) ←→ (N) Episodio
+
+Una Serie puede tener muchos Episodios
+Un Episodio pertenece a una sola Serie
+
+- Cascade: true (crear episodios al crear serie)
+- Eager: true (cargar episodios automáticamente)
+- OnDelete: CASCADE (eliminar episodios si se elimina la serie)
+```
+
+## 📦 Tecnologías
+
+- **Framework:** NestJS 10
+- **Lenguaje:** TypeScript 5
+- **Base de Datos:** PostgreSQL 15
+- **ORM:** TypeORM 0.3
+- **Autenticación:** JWT + Passport
+- **Validación:** class-validator + class-transformer
+- **Encriptación:** bcrypt
+- **Containerización:** Docker + Docker Compose
+
+## 👨‍💻 Autor
+
+**JOSE RIVERA**
+- GitHub: [@josriver](https://github.com/josriver)
+
+
+
+
+---
+
+⭐ Si te fue útil este proyecto, ¡dale una estrella en GitHub!

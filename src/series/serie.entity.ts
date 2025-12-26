@@ -20,7 +20,7 @@ export class Serie {
 
   // Relación: Una Serie tiene muchos Episodios
   @OneToMany(() => Episodio, (episodio) => episodio.serie, {
-    cascade: true, // Permite crear episodios al crear una serie
+    cascade: true,
   })
   episodios: Episodio[];
 }

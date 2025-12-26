@@ -1,6 +1,6 @@
 /**
  * DTO para crear un nuevo episodio
- * Un episodio DEBE estar asociado a una serie (serieId)
+ * Un episodio DEBE estar asociado a una serie 
  */
 import { IsString, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 import { Type } from 'class-transformer';

@@ -15,7 +15,7 @@ export class Episodio {
   @Column()
   numeroCapitulo: number;
 
-  // Relación: Un Episodio pertenece a una Serie (Foreign Key)
+  // Relación: Un Episodio pertenece a una Serie 
   @ManyToOne(() => Serie, (serie) => serie.episodios, {
     onDelete: 'CASCADE', // Si se elimina la serie, se eliminan sus episodios
   })
@@ -23,5 +23,5 @@ export class Episodio {
   serie: Serie;
 
   @Column()
-  serieId: number; // Foreign Key explícita
+  serieId: number; 
 }

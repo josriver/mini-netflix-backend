@@ -13,13 +13,13 @@ export class SeriesController {
     return this.seriesService.create(createSerieDto);
   }
 
-  @Public() // Ruta pública
+  @Public() 
   @Get()
   findAll() {
     return this.seriesService.findAll();
   }
 
-  @Public() // Ruta pública
+  @Public() 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.seriesService.findOne(+id);

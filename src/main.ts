@@ -5,7 +5,6 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Habilitar CORS para desarrollo
   app.enableCors();
 
   // Configuración global del ValidationPipe
@@ -13,9 +12,9 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
-      transform: true, // Transforma tipos automáticamente
+      transform: true,
       transformOptions: {
-        enableImplicitConversion: true, // Convierte tipos implícitamente
+        enableImplicitConversion: true,
       },
     }),
   );

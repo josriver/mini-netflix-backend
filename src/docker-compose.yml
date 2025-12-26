@@ -1,0 +1,88 @@
+# ==============================================================
+# DOCKER COMPOSE - Orquestación de Servicios
+# ==============================================================
+version: '3.8'
+services:
+
+  # ========== SERVICIO 1: BASE DE DATOS POSTGRESQL ==========
+  postgres:
+    
+    image: postgres:15-alpine
+    container_name: mini-netflix-db
+
+    restart: unless-stopped
+    
+    ports:
+      - "5432:5432"
+    
+    environment:
+      POSTGRES_USER: postgres         
+      POSTGRES_PASSWORD: postgres     
+      POSTGRES_DB: mini_netflix       
+    
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+    networks:
+      - mini-netflix-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========== SERVICIO 2: API NESTJS ==========
+  api:
+
+    build:
+      context: .                    
+      dockerfile: Dockerfile
+      target: production            
+    
+
+    container_name: mini-netflix-api
+    
+    restart: unless-stopped
+   
+    ports:
+      - "3000:3000"
+   
+    environment:
+      NODE_ENV: production
+      DB_HOST: postgres              
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE: mini_netflix
+      
+      # Configuración JWT
+      JWT_SECRET: mi_super_secreto_en_docker_123456
+      JWT_EXPIRATION: 24h
+  
+
+      PORT: 3000
+    depends_on:
+      postgres:
+        condition: service_healthy   
+    
+    networks:
+      - mini-netflix-network
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s          
+
+# ========== VOLÚMENES ==========
+# Espacios de almacenamiento persistente
+volumes:
+  postgres_data:
+    driver: local                
+
+# ========== REDES ==========
+# Redes virtuales para comunicación entre contenedores
+networks:
+  mini-netflix-network:
+    driver: bridge                

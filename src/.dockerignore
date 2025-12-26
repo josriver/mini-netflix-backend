@@ -1,0 +1,76 @@
+# ==============================================================
+# .dockerignore - Archivos a NO copiar al contenedor Docker
+# ==============================================================
+
+# ========== Dependencias ==========
+# No copiar node_modules porque se instalan dentro del contenedor
+node_modules
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# ========== Código Compilado ==========
+# No copiar dist porque se compila dentro del contenedor
+dist
+build
+
+# ========== Variables de Entorno ==========
+# NUNCA copiar archivos con contraseñas o secretos
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+
+# ========== Git ==========
+# No necesitamos el historial de Git en el contenedor
+.git
+.gitignore
+.gitattributes
+
+# ========== IDEs ==========
+# Archivos de configuración de editores
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ========== Testing ==========
+# Archivos de tests y cobertura no son necesarios en producción
+coverage
+.nyc_output
+test
+*.test.ts
+*.spec.ts
+
+# ========== Sistema Operativo ==========
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========== Documentación ==========
+# README y docs no son necesarios para correr la app
+README.md
+docs
+*.md
+
+# ========== Docker ==========
+# No copiar archivos de Docker al contenedor
+Dockerfile
+.dockerignore
+docker-compose.yml
+docker-compose.*.yml
+
+# ========== CI/CD ==========
+# Archivos de pipelines
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# ========== Logs ==========
+logs
+*.log

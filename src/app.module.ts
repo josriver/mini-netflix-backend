@@ -36,9 +36,9 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     SeriesModule,
     EpisodiosModule,
   ],
-  controllers: [AppController],  // ⭐ IMPORTANTE: Debe estar aquí
+  controllers: [AppController],
   providers: [
-    AppService,  // ⭐ IMPORTANTE: Debe estar aquí
+    AppService,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
