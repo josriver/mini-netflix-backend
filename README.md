@@ -170,47 +170,170 @@ docker-compose up -d
 
 ## 🔐 Autenticación
 
-Las rutas protegidas requieren un token JWT en el header:
-
-```http
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-```
-
-### Ejemplo de registro:
+#### 1. Registrar un nuevo usuario
 
 ```bash
 curl -X POST http://localhost:3000/auth/register \
   -H "Content-Type: application/json" \
   -d '{
-    "username": "admin",
-    "password": "admin123"
+    "email": "usuario@ejemplo.com",
+    "password": "123456"
   }'
 ```
 
-**Respuesta:**
+**Respuesta exitosa:**
 ```json
 {
-  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "id": 1,
+  "email": "usuario@ejemplo.com",
+  "role": "user",
+  "createdAt": "2024-12-26T10:00:00.000Z"
+}
+```
+
+#### 2. Iniciar sesión
+
+```bash
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "usuario@ejemplo.com",
+    "password": "123456"
+  }'
+```
+
+**Respuesta exitosa:**
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
-    "id": "uuid-here",
-    "username": "admin"
+    "id": 1,
+    "email": "usuario@ejemplo.com",
+    "role": "user"
   }
 }
 ```
 
-### Ejemplo de creación de serie (con token):
+⚠️ **Guarda el `access_token` para usarlo en las peticiones protegidas.**
+
+---
+
+### 📺 Operaciones con Series
+
+#### 1. Listar todas las series (Público)
+
+```bash
+curl http://localhost:3000/series
+```
+
+#### 2. Ver una serie específica con episodios (Público)
+
+```bash
+curl http://localhost:3000/series/1
+```
+
+#### 3. Crear una serie (Requiere autenticación)
 
 ```bash
 curl -X POST http://localhost:3000/series \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer TU_TOKEN_AQUI" \
   -d '{
-    "titulo": "Stranger Things",
-    "genero": "Ciencia Ficción",
-    "sinopsis": "Un grupo de niños descubre experimentos secretos.",
-    "urlPortada": "https://example.com/stranger-things.jpg"
+    "titulo": "Breaking Bad",
+    "genero": "Drama",
+    "sinopsis": "Un profesor de química se convierte en fabricante de metanfetaminas",
+    "urlPortada": "https://example.com/breaking-bad.jpg"
   }'
 ```
+
+**Respuesta exitosa:**
+```json
+{
+  "id": 1,
+  "titulo": "Breaking Bad",
+  "genero": "Drama",
+  "sinopsis": "Un profesor de química se convierte en fabricante de metanfetaminas",
+  "urlPortada": "https://example.com/breaking-bad.jpg"
+}
+```
+
+#### 4. Actualizar una serie (Requiere autenticación)
+
+```bash
+curl -X PATCH http://localhost:3000/series/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN_AQUI" \
+  -d '{
+    "sinopsis": "Nueva sinopsis actualizada"
+  }'
+```
+
+#### 5. Eliminar una serie (Requiere autenticación)
+
+```bash
+curl -X DELETE http://localhost:3000/series/1 \
+  -H "Authorization: Bearer TU_TOKEN_AQUI"
+```
+
+---
+
+### 🎞️ Operaciones con Episodios
+
+#### 1. Listar todos los episodios (Público)
+
+```bash
+curl http://localhost:3000/episodios
+```
+
+#### 2. Ver un episodio específico (Público)
+
+```bash
+curl http://localhost:3000/episodios/1
+```
+
+#### 3. Crear un episodio (Requiere autenticación)
+
+```bash
+curl -X POST http://localhost:3000/episodios \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN_AQUI" \
+  -d '{
+    "titulo": "Pilot",
+    "duracion": 58,
+    "numeroCapitulo": 1,
+    "serieId": 1
+  }'
+```
+
+**Respuesta exitosa:**
+```json
+{
+  "id": 1,
+  "titulo": "Pilot",
+  "duracion": 58,
+  "numeroCapitulo": 1,
+  "serieId": 1
+}
+```
+
+#### 4. Actualizar un episodio (Requiere autenticación)
+
+```bash
+curl -X PATCH http://localhost:3000/episodios/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN_AQUI" \
+  -d '{
+    "duracion": 60
+  }'
+```
+
+#### 5. Eliminar un episodio (Requiere autenticación)
+
+```bash
+curl -X DELETE http://localhost:3000/episodios/1 \
+  -H "Authorization: Bearer TU_TOKEN_AQUI"
+```
+
 
 ## 🏗️ Estructura del Proyecto
 
