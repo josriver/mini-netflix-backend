@@ -417,30 +417,8 @@ curl -X POST http://localhost:3000/series \
 
 ## 🚀 Despliegue
 
-### Render (Recomendado)
+### Render 
 
-1. Sube tu código a GitHub
-2. Crea una cuenta en [Render](https://render.com)
-3. Conecta tu repositorio
-4. Render detectará el `render.yaml` automáticamente
-5. Configura las variables de entorno
-6. Despliega
-
-### Railway
-
-```bash
-# Instalar Railway CLI
-npm i -g @railway/cli
-
-# Login
-railway login
-
-# Inicializar proyecto
-railway init
-
-# Desplegar
-railway up
-```
 
 ## 🛡️ Seguridad
 
