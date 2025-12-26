@@ -1,22 +1,23 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
-
 /**
  * Entidad User - Representa un usuario administrador del sistema
  */
-@Entity('users') // Nombre de la tabla en la BD
+
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+
+@Entity('users')
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column({ type: 'varchar', length: 100, unique: true, nullable: false })
-  username: string; // Usuario único
+  @Column({ unique: true })
+  email: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  password: string; // Password hasheado con bcrypt
+  @Column()
+  password: string;
 
-  @Column({ type: 'varchar', length: 50, default: 'admin' })
-  role: string; // Rol del usuario (admin por defecto)
+  @Column({ default: 'user' })
+  role: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn()
   createdAt: Date;
 }
